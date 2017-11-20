@@ -16,13 +16,13 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="well well-sm">
-                            <form>
+                            <form action ="db/controller.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">
                                             Nombre</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nombre" required="required" />
+                                        <input type="text" class="form-control" id="nombre" name ="nombre" placeholder="Nombre" required="required" />
                                     </div>
                                     <div class="form-group">
                                         <label for="email">
@@ -30,12 +30,12 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                             </span>
-                                            <input type="email" class="form-control" id="email" placeholder="Email" required="required" /></div>
+                                            <input type="email" class="form-control" id="email" name ="email" placeholder="Email" required="required" /></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="subject">
                                             Motivo</label>
-                                        <select id="subject" name="subject" class="form-control" required="required">
+                                        <select id="subject" name="motivo" class="form-control" required="required">
                                             <option value="problemas">Problemas con la pagina</option>
                                             <option value="sugerencia">Sugerencias</option>
                                             <option value="otro">Otro motivo</option>
@@ -46,12 +46,12 @@
                                     <div class="form-group">
                                         <label for="name">
                                             Mensaje</label>
-                                        <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                        <textarea name="mensaje" id="message" class="form-control" rows="9" cols="25" required="required"
                                             placeholder="Mensaje"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                                    <button type="submit" name="sendmail" value="sendemail" class="btn btn-primary pull-right" id="btnContactUs">
                                         Enviar</button>
                                 </div>
                             </div>

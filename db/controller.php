@@ -79,47 +79,175 @@
 
     }
 
-    if(isset($_POST["cargarEspecie"])){
-        $resultado = [];
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
-        // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if(isset($_POST["cargarhierba"])){
+        // Creamos la cadena aletoria 
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
+        $cad = ""; 
+        for($i=0;$i<12;$i++) { 
+        $cad .= substr($str,rand(0,62),1); 
+        } 
+        // Fin de la creacion de la cadena aletoria 
+        $tamanoDibujo = $_FILES [ 'dibujo' ][ 'size' ]; // Leemos el tamaño del fichero
+        $tamanoFoto = $_FILES [ 'dibujo' ][ 'size' ]; // Leemos el tamaño del fichero
+
+        $tamaño_max="50000000000"; // Tamaño maximo permitido 
+        if( $tamanoDibujo < $tamaño_max && $tamanoFoto < $tamaño_max){ // Comprobamos el tamaño  
+            $destinoDibujo = '../img/especies/dibujo' ; // Carpeta donde se guardara  dibujo
+            $destinoFoto = '../img/especies/foto' ; // Carpeta donde se guardara foto
+            $sep1=explode('image/',$_FILES["dibujo"]["type"]);
+            $sep2=explode('image/',$_FILES["foto"]["type"]); 
+            $tipo1=$sep1[1]; // Optenemos el tipo de imagen que es 
+            $tipo2=$sep2[1]; // Optenemos el tipo de imagen que es
+            if($tipo1 == "png"  || $tipo1 == "jpeg" || $tipo2 == "png"  || $tipo2 == "jpeg"){ // Si el tipo de imagen a subir es el mismo de los permitidos, segimos. Puedes agregar mas tipos de imagen 
+                move_uploaded_file ( $_FILES [ 'dibujo' ][ 'tmp_name' ], $destinoDibujo . '/' .$cad.'.'.$tipo1);  // Subimos el archivo 
+                move_uploaded_file ( $_FILES [ 'foto' ][ 'tmp_name' ], $destinoFoto . '/' .$cad.'.'.$tipo2);  // Subimos el archivo 
+                
+                try {
+                    $mbd = new PDO('mysql:host='.$servername.';dbname='.$dbname,  $username, $password);
+                    $mbd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    // Prepara insert
+                    $sentencia = $mbd->prepare ("INSERT INTO hierbas (nombre, nombre_cientifico, caracteristica1, caracteristica2, foto, dibujo, porte, espinas ,hoja, borde) VALUES (:nombre, :nombre_cientifico, :caracteristica1, :caracteristica2, :foto, :dibujo, :porte, :espinas ,:hoja, :borde)");
+                    
+                    $sentencia->bindParam(':nombre', $nombre);
+                    $sentencia->bindParam(':nombre_cientifico', $cientifico);
+                    $sentencia->bindParam(':caracteristica1', $descripcion1);
+                    $sentencia->bindParam(':caracteristica2', $descripcion2);
+                    $sentencia->bindParam(':foto', $foto);
+                    $sentencia->bindParam(':dibujo', $dibujo);
+                    $sentencia->bindParam(':porte', $porte);
+                    $sentencia->bindParam(':espinas', $espinas);
+                    $sentencia->bindParam(':hoja', $hoja);
+                    $sentencia->bindParam(':borde', $borde);
+    
+                    $nombre     = $_POST["nombre"];
+                    $cientifico     = $_POST["cientifico"];
+                    $descripcion1     = $_POST["descripcion1"];
+                    $descripcion2     = $_POST["descripcion2"];
+                    $foto       = 'img/especies/foto/' .$cad.'.'.$tipo2;
+                    $dibujo       ='img/especies/dibujo/' .$cad.'.'.$tipo1;
+                    $porte      = $_POST["porte"];
+                    $espinas   = $_POST["espinas"];
+                    $hoja    = $_POST["hoja"];
+                    $borde       = $_POST["borde"];
+
+                    $sentencia->execute();
+
+                    $sentencia = null;
+                    $mbd = null;
+                } catch (PDOException $e) {
+                    echo 'Falló la conexión: ' . $e->getMessage();
+                }
+
+                echo ("<SCRIPT LANGUAGE='JavaScript'>
+                window.alert('Se cargo la hierba de manera correcta')
+                window.location.href='../alta.php'
+                ;
+                </SCRIPT>
+                ");
+            } 
+            else echo ("<SCRIPT LANGUAGE='JavaScript'>
+            window.alert('El tipo de archivo no es el permitido. Debe ser png o jpeg!')
+            window.location.href='../alta.php';
+            </SCRIPT>
+            ");// Si no es el tipo permitido
+        } 
+        else echo ("<SCRIPT LANGUAGE='JavaScript'>
+        window.alert('Archivo muy pesado!')
+        window.location.href='../alta.php';
+        </SCRIPT>
+        ");// Si supera el tamaño de permitido
+
+    }
+
+    if(isset($_POST["cargarpasto"])){
+        // Creamos la cadena aletoria 
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
+        $cad = ""; 
+        for($i=0;$i<12;$i++) { 
+        $cad .= substr($str,rand(0,62),1); 
+        } 
+        // Fin de la creacion de la cadena aletoria 
+        $tamanoDibujo = $_FILES [ 'dibujo' ][ 'size' ]; // Leemos el tamaño del fichero
+        $tamanoFoto = $_FILES [ 'dibujo' ][ 'size' ]; // Leemos el tamaño del fichero
+
+        $tamaño_max="50000000000"; // Tamaño maximo permitido 
+        if( $tamanoDibujo < $tamaño_max && $tamanoFoto < $tamaño_max){ // Comprobamos el tamaño  
+            $destinoDibujo = '../img/especies/dibujo' ; // Carpeta donde se guardara  dibujo
+            $destinoFoto = '../img/especies/foto' ; // Carpeta donde se guardara foto
+            $sep1=explode('image/',$_FILES["dibujo"]["type"]);
+            $sep2=explode('image/',$_FILES["foto"]["type"]); 
+            $tipo1=$sep1[1]; // Optenemos el tipo de imagen que es 
+            $tipo2=$sep2[1]; // Optenemos el tipo de imagen que es
+            if($tipo1 == "png"  || $tipo1 == "jpeg" || $tipo2 == "png"  || $tipo2 == "jpeg"){ // Si el tipo de imagen a subir es el mismo de los permitidos, segimos. Puedes agregar mas tipos de imagen 
+                move_uploaded_file ( $_FILES [ 'dibujo' ][ 'tmp_name' ], $destinoDibujo . '/' .$cad.'.'.$tipo1);  // Subimos el archivo 
+                move_uploaded_file ( $_FILES [ 'foto' ][ 'tmp_name' ], $destinoFoto . '/' .$cad.'.'.$tipo2);  // Subimos el archivo 
+                
+                try {
+                    $mbd = new PDO('mysql:host='.$servername.';dbname='.$dbname,  $username, $password);
+                    $mbd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    // Prepara insert
+                    $sentencia = $mbd->prepare ("INSERT INTO especies (nombre, nombre_cientifico, caracteristica1, caracteristica2, foto, dibujo, macollo, tipo_lamina ,tipo_ligula, tipo_vegetativo) VALUES (:nombre, :nombre_cientifico, :caracteristica1, :caracteristica2, :foto, :dibujo, :macollo, :lamina ,:ligula, :vegetativo)");
+                    
+                    $sentencia->bindParam(':nombre', $nombre);
+                    $sentencia->bindParam(':nombre_cientifico', $cientifico);
+                    $sentencia->bindParam(':caracteristica1', $descripcion1);
+                    $sentencia->bindParam(':caracteristica2', $descripcion2);
+                    $sentencia->bindParam(':foto', $foto);
+                    $sentencia->bindParam(':dibujo', $dibujo);
+                    $sentencia->bindParam(':macollo', $macollo);
+                    $sentencia->bindParam(':lamina', $lamina);
+                    $sentencia->bindParam(':ligula', $ligula);
+                    $sentencia->bindParam(':vegetativo', $vegetativo);
+    
+                    $nombre     = $_POST["nombre"];
+                    $cientifico     = $_POST["cientifico"];
+                    $descripcion1     = $_POST["descripcion1"];
+                    $descripcion2     = $_POST["descripcion2"];
+                    $foto       = 'img/especies/foto/' .$cad.'.'.$tipo2;
+                    $dibujo       ='img/especies/dibujo/' .$cad.'.'.$tipo1;
+                    $macollo      = $_POST["macollo"];
+                    $lamina   = $_POST["lamina"];
+                    $ligula    = $_POST["ligula"];
+                    $vegetativo       = $_POST["tipo_vegetativo"];
+
+                    $sentencia->execute();
+
+                    $sentencia = null;
+                    $mbd = null;
+                } catch (PDOException $e) {
+                    echo 'Falló la conexión: ' . $e->getMessage();
+                }
+
+                echo ("<SCRIPT LANGUAGE='JavaScript'>
+                window.alert('Se cargo el pasto de manera correcta')
+                window.location.href='../alta.php'
+                ;
+                </SCRIPT>
+                ");
+            } 
+            else echo ("<SCRIPT LANGUAGE='JavaScript'>
+            window.alert('El tipo de archivo no es el permitido. Debe ser png o jpeg!')
+            window.location.href='../alta.php';
+            </SCRIPT>
+            ");// Si no es el tipo permitido
+        } 
+        else echo ("<SCRIPT LANGUAGE='JavaScript'>
+        window.alert('Archivo muy pesado!')
+        window.location.href='../alta.php';
+        </SCRIPT>
+        ");// Si supera el tamaño de permitido
+
+    }
+
+    if(isset($_POST["sendmail"])){
+
         
-        // prepara sql y bind parameters
-            $stmt = $conn->prepare("INSERT INTO especies (nombre,nombre_cientifico, caracteristica1,caracteristica2, macollo, tipo_lamina, tipo_ligula, tipo_vegetativo) 
-        VALUES (:nombre,:cientifico, :caracteristica1, :caracteristica2, :macollo,:lamina, :ligula,:vegetativo)");
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':cientifico', $cientifico);
-            $stmt->bindParam(':caracteristica1', $caracteristica1);
-            $stmt->bindParam(':caracteristica2', $caracteristica2);
-            $stmt->bindParam(':macollo', $macollo);
-            $stmt->bindParam(':lamina', $lamina);
-            $stmt->bindParam(':ligula', $ligula);
-            $stmt->bindParam(':vegetativo', $macollo);
+        echo ("<SCRIPT LANGUAGE='JavaScript'>
+        window.alert('gracias por contactarnos')
         
-        // ejecuta la consulta
-            $uploaddirfoto = 'img/especies/foto/';
-            $uploaddirdibujo = 'img/especies/dibujo/';
-            $nombre = $_POST["nombre"];
-            $cientifico = $_POST["cientifico"];
-            $caracteristica1 = $_POST["descripcion1"];
-            $caracteristica2 = $_POST["descripcion2"];
-            $macollo = $_POST["macollo"];
-            $lamina = $_POST["lamina"];
-            $ligula = $_POST["ligula"];
-            $vegetativo = $_POST["vegetativo"];
-            $stmt->execute();
-        
-            $resultado = array("<div class='alert alert-success' role='alert'>Se cargo el pasto ".$nombre."</br></div>");
-            echo json_encode ($resultado);
-        }
-        catch(PDOException $e)
-        {
-            $resultado = array ("Error: " . $e->getMessage());
-            echo json_encode ($resultado);
-        }
-        $conn = null;
+        ;
+        </SCRIPT>
+        ");
 
     }
 
