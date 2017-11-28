@@ -36,8 +36,8 @@
         </div>
 
         <!-- Ayuda macollo -->
-        <div id="infoMacollo" class="modal fade bs-example-modal-xl" role="dialog">
-            <div class="modal-dialog modal-xl">
+        <div id="infoMacollo" class="modal fade bs-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -46,25 +46,31 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="well">
-                                    <h4>Rollizo</h4>
-                                    <img src="http://4.bp.blogspot.com/_wIYf_GVbcNI/SM-2cRJdoFI/AAAAAAAAAL8/iE7WKZGwOUU/s400/escanear0014.jpg" style="height:350px;"  alt="ayuda" class="img-thumbnail">
-                                    <p>El macollo gira con facilidad al frotarlo entre dos dedos.</p>
+                                    <img src="img/ayuda/macollo.jpg" style="height:400px;" alt="ayuda" class="img-thumbnail">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-7">
                                 <div class="well">
-                                    <h4>Semi rollizo/semi comprimido</h4>
-                                    <img src="http://4.bp.blogspot.com/_wIYf_GVbcNI/SM-2cRJdoFI/AAAAAAAAAL8/iE7WKZGwOUU/s400/escanear0014.jpg" style="height:350px;" alt="ayuda" class="img-thumbnail">
-                                    <p>El macollo gira con dificultad al frotarlo entre dos dedos.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="well">
-                                    <h4>Comprimido</h4>
-                                    <img src="http://4.bp.blogspot.com/_wIYf_GVbcNI/SM-2cRJdoFI/AAAAAAAAAL8/iE7WKZGwOUU/s400/escanear0014.jpg" style="height:350px;" alt="ayuda" class="img-thumbnail">
-                                    <p>El macollo no gira al frotarlo entre dos dedos.</p>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">Semi rollizo/semi comprimido</h4>
+                                            <p class="list-group-item-text">El macollo gira con dificultad al frotarlo entre dos dedos.</p>
+                                        </a>
+                                    </div>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">Rollizo</h4>
+                                            <p class="list-group-item-text">El macollo gira con facilidad al frotarlo entre dos dedos.</p>
+                                        </a>
+                                    </div>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">Comprimido</h4>
+                                            <p class="list-group-item-text">El macollo no gira al frotarlo entre dos dedos.</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -151,3 +157,5 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>

@@ -8,7 +8,8 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-    <?php 
+    <?php
+        $pagina = "inicio"; 
 		include("includes/nav.php");
 		?>
         <div class="jumbotron jumbotron-fluid" id="contenedor">
@@ -18,9 +19,11 @@
             <img class="img-responsive" src="img/logo.png" alt="no se pudo cargar la imagen">
             </div>
             <div class="container" id="description">
-            <p> Bienvenido a Agrinandum, la herramienta de control de plantas más completa. 
-                Tenemos una base de datos con más de 150 tipos de plantas y sus métodos de control dependiendo 
-                el entorno en el que se encuentren, garantizando así no perjudicar las demas especies cercanas.</p>      
+            <p> Bienvenido a Agrinandum, la herramienta más completa para controlar y favorecer plantas. 
+                Con esta herramienta podras controlar malezas dependiendo de su entorno y asi no perjudicar las
+                demas especies cercanas.
+                Tambien vas a poder favorecer distintas gramineas y asi obtener una mayor producción ganadera.
+                </aside></p>      
             </div>
         </div>
         <?php

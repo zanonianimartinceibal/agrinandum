@@ -8,7 +8,8 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body onload="listarEspecies();">
-        <?php 
+        <?php
+            $pagina = "todas";  
             include("includes/nav.php");
             ?>
             <div class="jumbotron jumbotron-fluid" id="contenedor">

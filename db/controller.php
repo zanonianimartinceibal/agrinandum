@@ -244,7 +244,7 @@
         
         echo ("<SCRIPT LANGUAGE='JavaScript'>
         window.alert('gracias por contactarnos')
-        
+        window.location.href='../contacto.php';
         ;
         </SCRIPT>
         ");

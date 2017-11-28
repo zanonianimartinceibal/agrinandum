@@ -9,6 +9,7 @@
     </head>
     <body onload="loadIdentificar();">
         <?php 
+            $pagina = "identificar"; 
             include("includes/nav.php");
             ?>
             <div class="jumbotron jumbotron-fluid" id="contenedor">
@@ -19,30 +20,22 @@
                         vas a encontrar ayuda.
                     </div>
                     <form class="form-horizontal">
-                        <fieldset>
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="planta">Tipo deplanta</label>
-                                <div class="col-md-3">
-                                    <select id="planta" name="planta" class="form-control" onchange="showForm();">
-                                        <option value="0" disabled selected value> -- Seleccionar tipo -- </option>
-                                        <option value="1">Pasto</option>
-                                        <option value="2">Hierba</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <button  data-toggle='modal' data-target='#infoPlanta' type="button" class="btn btn-default btn">
-                                        <span  class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                            </div>
-                            <?php
-                            include("includes/form/pastoform.php"); 
-                            include("includes/form/hierbaform.php"); 
-                            ?>
-
-                        </fieldset>
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="planta">Tipo deplanta</label>
+                        <div class="col-md-3">
+                            <select id="planta" name="planta" class="form-control" onchange="showForm();">
+                                <option value="0" disabled selected value> -- Seleccionar tipo -- </option>
+                                <option value="1">Pasto</option>
+                                <option value="2">Hierba</option>
+                            </select>
+                        </div>
+                    </div>
                     </form>
+                        <?php
+                            include("includes/form/identificar/pastoform.php"); 
+                            include("includes/form/identificar/hierbaform.php"); 
+                            ?>
                 </div>
             </div>
             <div class="container">
@@ -62,6 +55,7 @@
             include("includes/modalesAyuda/ayudahierbas.php");
             
         ?>
+    
         <!-- Fin modales de ayuda -->
         
 

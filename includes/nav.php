@@ -13,10 +13,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li><a href="index.php">Inicio</a></li>
-        <li><a href="identificar.php">Identificar especie</a></li>
-        <li><a href="todas.php" >Mostrar todos</a></li>
-        <li><a href="contacto.php">Contacto</a></li>
+        <li <?php if($pagina=="inicio"){echo "class = 'active'";} ?> ><a href="index.php">Inicio</a></li>
+        <li  <?php if($pagina=="identificar"){echo "class = 'active'";} ?> ><a href="identificar.php">Identificar especie</a></li>
+        <li  <?php if($pagina=="todas"){echo "class = 'active'";} ?> ><a href="todas.php" >Mostrar todos</a></li>
+        <li  <?php if($pagina=="contacto"){echo "class = 'active'";} ?> ><a href="contacto.php">Contacto</a></li>
         
       </ul>
       <form class="navbar-form navbar-left">

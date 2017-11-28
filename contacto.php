@@ -9,6 +9,7 @@
     </head>
     <body>
         <?php 
+            $pagina = "contacto"; 
             include("includes/nav.php");
             ?>
             <div class="jumbotron jumbotron-fluid" id="contenedor">

@@ -1,5 +1,4 @@
 function listarEspecies() {
-    console.log("se listan especies");
     $("#container").load("includes/view/especieslist.php");
 };
 function verEspecie() {
@@ -7,7 +6,6 @@ function verEspecie() {
     var data = info.split("/");
     var especie = data[0];
     var tipo = data[1];
-    console.log("se muestra la especie"+especie);
     $("#container").load("includes/view/especie.php?especie="+especie+"&tipo="+data[1]);
 };
 

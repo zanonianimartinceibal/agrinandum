@@ -8,7 +8,8 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body onload="verEspecie();">
-        <?php 
+        <?php
+            $pagina = "";
             include("includes/nav.php");
             ?>
             <div class="jumbotron jumbotron-fluid" id="contenedor">
